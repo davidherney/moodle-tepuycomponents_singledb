@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/tepuy/components/singledb/db" VERSION="20190926" COMMENT="XMLDB file for Moodle local/tepuy"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="local_tepuy_singledb" COMMENT="List of data to singledb component">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="cmid" TYPE="int" LENGTH="11" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="groupid" TYPE="int" LENGTH="11" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="relatedid" TYPE="int" LENGTH="11" NOTNULL="false" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="tablekey" TYPE="char" LENGTH="127" NOTNULL="false" DEFAULT="" SEQUENCE="false"/>
+        <FIELD NAME="datastore" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="As a table record, into JSON"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="cmid" UNIQUE="false" FIELDS="cmid"/>
+        <INDEX NAME="groupid" UNIQUE="false" FIELDS="groupid"/>
+        <INDEX NAME="cmidtable" UNIQUE="false" FIELDS="cmid, tablekey"/>
+        <INDEX NAME="cmidrelatedtable" UNIQUE="false" FIELDS="cmid, relatedid, tablekey"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>
